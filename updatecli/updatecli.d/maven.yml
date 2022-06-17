@@ -11,22 +11,25 @@ scms:
       token: "{{ requiredEnv .github.token }}"
       username: "{{ .github.username }}"
       branch: "{{ .github.branch }}"
-  mavenGitHubMirror:
-    kind: git
+  VMTemplate:
+    kind: github
     spec:
-      url: "https://github.com/apache/maven.git"
-      branch: master
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: jenkins-infra
+      repository: jenkins-infra
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: "{{ .github.branch }}"
 
 sources:
-  getLatestMavenVersion:
-    kind: gittag
-    name: Get the latest Maven version
-    scmid: mavenGitHubMirror
+  getMavenVersionFromVMTemplate:
+    kind: yaml
+    name: Get the latest Maven version set in VM template
+    scmid: VMTemplate
     spec:
-      versionfilter:
-        kind: latest
-    transformers:
-      - trimprefix: "maven-"
+      file: hieradata/common.yaml
+      key: "profile::buildmaster::default_tools.maven.mvn.version"
 
 conditions:
   checkIfReleaseIsAvailable:

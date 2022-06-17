@@ -49,7 +49,7 @@ parallel(
   'updatecli': {
     updatecli(action: 'diff')
     if (env.BRANCH_IS_PRIMARY) {
-      updatecli(action: 'apply', cronTriggerExpression: '@weekly')
+      updatecli(action: 'apply', cronTriggerExpression: '@weekly', containerMemory: '1024Mi')
     }
   },
 )

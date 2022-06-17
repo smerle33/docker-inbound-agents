@@ -19,11 +19,11 @@ sources:
     kind: file
     name: Get the latest Maven version set in VM template
     spec:
-      file: https://raw.githubusercontent.com/jenkins-infra/jenkins-infra/production/hieradata/common.yaml
-      matchpattern: 'mvn:\n\s{6}version: (.*)'
+      file: https://raw.githubusercontent.com/jenkins-infra/packer-images/main/provisioning/tools-versions.yml
+      matchpattern: 'maven_version:\s"(.*)"'
     transformers:
       - findsubmatch:
-          pattern: 'mvn:\n\s{6}version: (.*)'
+          pattern: 'maven_version:\s"(.*)"'
           captureindex: 1
 
 conditions:

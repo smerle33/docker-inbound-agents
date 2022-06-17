@@ -11,25 +11,16 @@ scms:
       token: "{{ requiredEnv .github.token }}"
       username: "{{ .github.username }}"
       branch: "{{ .github.branch }}"
-  VMTemplate:
-    kind: github
-    spec:
-      user: "{{ .github.user }}"
-      email: "{{ .github.email }}"
-      owner: jenkins-infra
-      repository: jenkins-infra
-      token: "{{ requiredEnv .github.token }}"
-      username: "{{ .github.username }}"
-      branch: production
 
 sources:
+  # Retrieving Maven from VM template to synchronize its version across our infra
+  # See https://github.com/jenkins-infra/docker-inbound-agents/issues/18
   getMavenVersionFromVMTemplate:
-    kind: yaml
+    kind: file
     name: Get the latest Maven version set in VM template
-    scmid: VMTemplate
     spec:
-      file: hieradata/common.yaml
-      key: "profile::buildmaster::default_tools.maven.mvn.version"
+      file: https://raw.githubusercontent.com/jenkins-infra/jenkins-infra/production/hieradata/common.yaml
+      matchpattern: 'mvn:\n\s{6}version: "(.*)"'
 
 conditions:
   checkIfReleaseIsAvailable:

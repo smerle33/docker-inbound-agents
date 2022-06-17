@@ -47,9 +47,9 @@ parallel(
     ])
   },
   'updatecli': {
-    updatecli(action: 'diff', containerMemory: '1024Mi')
+    updatecli(action: 'diff')
     if (env.BRANCH_IS_PRIMARY) {
-      updatecli(action: 'apply', cronTriggerExpression: '@weekly', containerMemory: '1024Mi')
+      updatecli(action: 'apply', cronTriggerExpression: '@weekly')
     }
   },
 )

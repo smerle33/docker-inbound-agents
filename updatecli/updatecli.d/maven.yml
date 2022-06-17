@@ -11,20 +11,22 @@ scms:
       token: "{{ requiredEnv .github.token }}"
       username: "{{ .github.username }}"
       branch: "{{ .github.branch }}"
+  mavenGitHubMirror:
+    kind: git
+    spec:
+      url: "https://github.com/apache/maven.git"
+      branch: master
 
 sources:
-  mavenVersion:
-    kind: githubRelease
+  getLatestMavenVersion:
+    kind: gittag
     name: Get the latest Maven version
+    scmid: mavenGitHubMirror
     spec:
-      owner: "apache"
-      repository: "maven"
-      token: "{{ requiredEnv .github.token }}"
-      username: "{{ .github.username }}"
-      versionFilter:
+      versionfilter:
         kind: latest
     transformers:
-      - trimPrefix: "maven-"
+      - trimprefix: "maven-"
 
 conditions:
   checkIfReleaseIsAvailable:

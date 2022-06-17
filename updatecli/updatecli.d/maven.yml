@@ -20,7 +20,7 @@ scms:
       repository: jenkins-infra
       token: "{{ requiredEnv .github.token }}"
       username: "{{ .github.username }}"
-      branch: "{{ .github.branch }}"
+      branch: production
 
 sources:
   getMavenVersionFromVMTemplate:

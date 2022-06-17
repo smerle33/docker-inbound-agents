@@ -36,7 +36,7 @@ conditions:
     kind: shell
     disablesourceinput: true
     spec:
-      command: curl --connect-timeout 5 --location --head --fail --silent --show-error https://archive.apache.org/dist/maven/maven-3/{{ source `getLatestMavenVersion` }}/binaries/apache-maven-{{ source `getLatestMavenVersion` }}-bin.tar.gz
+      command: curl --connect-timeout 5 --location --head --fail --silent --show-error https://archive.apache.org/dist/maven/maven-3/{{ source `getMavenVersionFromVMTemplate` }}/binaries/apache-maven-{{ source `getMavenVersionFromVMTemplate` }}-bin.tar.gz
   checkMavenJdk8DockerImage:
     name: Ensure that the docker image "maven:<found_version>eclipse-temurin-8" is published
     kind: dockerImage

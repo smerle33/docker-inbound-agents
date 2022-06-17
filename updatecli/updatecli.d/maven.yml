@@ -33,12 +33,12 @@ conditions:
     kind: shell
     disablesourceinput: true
     spec:
-      command: curl --connect-timeout 5 --location --head --fail --silent --show-error https://archive.apache.org/dist/maven/maven-3/{{ source `mavenVersion` }}/binaries/apache-maven-{{ source `mavenVersion` }}-bin.tar.gz
+      command: curl --connect-timeout 5 --location --head --fail --silent --show-error https://archive.apache.org/dist/maven/maven-3/{{ source `getLatestMavenVersion` }}/binaries/apache-maven-{{ source `getLatestMavenVersion` }}-bin.tar.gz
   checkMavenJdk8DockerImage:
     name: Ensure that the docker image "maven:<found_version>eclipse-temurin-8" is published
     kind: dockerImage
     transformers:
-      - addSuffix: "-eclipse-temurin-8"
+      - addsuffix: "-eclipse-temurin-8"
     spec:
       image: "maven"
       ## tag come from the input source
@@ -47,7 +47,7 @@ conditions:
     name: Ensure that the docker image "maven:<found_version>eclipse-temurin-11" is published
     kind: dockerImage
     transformers:
-      - addSuffix: "-eclipse-temurin-11"
+      - addsuffix: "-eclipse-temurin-11"
     spec:
       image: "maven"
       ## tag come from the input source
@@ -56,7 +56,7 @@ conditions:
     name: Ensure that the docker image "maven:<found_version>eclipse-temurin-17" is published
     kind: dockerImage
     transformers:
-      - addSuffix: "-eclipse-temurin-17"
+      - addsuffix: "-eclipse-temurin-17"
     spec:
       image: "maven"
       ## tag come from the input source
@@ -67,7 +67,7 @@ targets:
     name: Update the Maven version for the JDK8 container image
     kind: dockerfile
     transformers:
-      - addSuffix: "-eclipse-temurin-8"
+      - addsuffix: "-eclipse-temurin-8"
     spec:
       file: maven/jdk8/Dockerfile
       instruction:
@@ -78,7 +78,7 @@ targets:
     name: Update the Maven version for the JDK8 container image
     kind: dockerfile
     transformers:
-      - addSuffix: "-eclipse-temurin-11"
+      - addsuffix: "-eclipse-temurin-11"
     spec:
       file: maven/jdk11/Dockerfile
       instruction:
@@ -89,7 +89,7 @@ targets:
     name: Update the Maven version for the JDK8 container image
     kind: dockerfile
     transformers:
-      - addSuffix: "-eclipse-temurin-17"
+      - addsuffix: "-eclipse-temurin-17"
     spec:
       file: maven/jdk17/Dockerfile
       instruction:

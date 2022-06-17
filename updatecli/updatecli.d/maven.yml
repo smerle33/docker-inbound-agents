@@ -13,11 +13,11 @@ scms:
       branch: "{{ .github.branch }}"
 
 sources:
-  # Retrieving Maven from VM template to synchronize its version across our infra
+  # Retrieving Maven from packer-images to synchronize its version across our infra
   # See https://github.com/jenkins-infra/docker-inbound-agents/issues/18
   getMavenVersionFromVMTemplate:
     kind: file
-    name: Get the latest Maven version set in VM template
+    name: Get the latest Maven version set in packer-images
     spec:
       file: https://raw.githubusercontent.com/jenkins-infra/packer-images/main/provisioning/tools-versions.yml
       matchpattern: 'maven_version:\s"(.*)"'

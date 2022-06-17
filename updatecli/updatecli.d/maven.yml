@@ -20,7 +20,11 @@ sources:
     name: Get the latest Maven version set in VM template
     spec:
       file: https://raw.githubusercontent.com/jenkins-infra/jenkins-infra/production/hieradata/common.yaml
-      matchpattern: 'mvn:\n\s{6}version: "(.*)"'
+      matchpattern: 'mvn:\n\s{6}version: (.*)'
+    transformers:
+      - findsubmatch:
+          pattern: 'mvn:\n\s{6}version: (.*)'
+          captureindex: 1
 
 conditions:
   checkIfReleaseIsAvailable:

@@ -49,7 +49,7 @@ targets:
     name: change arg in Dockerfile
     kind: dockerfile
     spec:
-      file: maven/jdk8/Dockerfile.nanoserver
+      file: maven/jdk11/Dockerfile.nanoserver
       instruction:
         keyword: "ARG"
         matcher: "JAVA_VERSION"

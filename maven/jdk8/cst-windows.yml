@@ -4,7 +4,7 @@ commandTests:
   - name: "Check that `java` is present in the PATH and match jdk8"
     command: "cmd.exe"
     args: ["/C", "java", "-version"]
-    expectedOutput: ["Temurin-8"]
+    expectedOutput: ["1.8.0_352"]
   - name: "Check that `java 11` is present in C:/openjdk-11"
     command: "cmd.exe"
     args: ["/C", "C:/openjdk-11/bin/java", "--version"]

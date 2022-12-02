@@ -5,7 +5,7 @@ commandTests:
     command: "cmd.exe"
     args: ["/C", "java", "-version"]
     # JDK8 prints to `stderr` - https://bugs.openjdk.org/browse/JDK-8166116
-    expectedOutput: ["build 1.8.", "Temurin"]
+    expectedError: ["build 1.8.", "Temurin"]
   - name: "Check that `java 11` is present in C:/openjdk-11"
     command: "cmd.exe"
     args: ["/C", "C:/openjdk-11/bin/java", "--version"]

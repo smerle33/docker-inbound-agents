@@ -28,7 +28,7 @@ parallel(
       dockerfile: 'maven/jdk19/Dockerfile.nanoserver',
       agentLabels: 'windows-amd64-docker',
       platform: 'windows/amd64',
-      imageDir: 'maven/jdk19',
+      imageDir: 'maven/jdk19/',
     ])
   },
   'maven-jdk19-nanoserver': {

@@ -22,6 +22,11 @@ COPY --from=python C:/Python C:/tools/python
 ARG LAUNCHABLE_VERSION=1.65.0
 RUN "C:/tools/python/python.exe" -m pip install --no-cache-dir launchable=="${env:LAUNCHABLE_VERSION}";
 
+# Adding jdk11 from eclipse-temurin
+# Use ENV and not ARG : https://docs.docker.com/engine/reference/builder/#using-arg-variables
+ENV JAVA_HOME="C:\tools\jdk-11"
+COPY --from=core "${JAVA_HOME}" "${JAVA_HOME}"
+
 # https://github.com/StefanScherer/dockerfiles-windows/tree/master/golang-issue-21867
 COPY --from=core C:/windows/system32/netapi32.dll C:/windows/system32/netapi32.dll
 
